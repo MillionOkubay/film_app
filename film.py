@@ -24,7 +24,7 @@ original_img = Image.open("ChatGPT Image 20. Mai 2025, 15_47_50.png")
 scaled_width = int(original_img.width * 0.2)
 scaled_height = int(original_img.height * 0.2)
 scaled_img = original_img.resize((scaled_width, scaled_height))
-st.image(scaled_img, caption="Logo für Dino 🦖", use_container_width=False)
+st.image(scaled_img, caption=" Für Dino 🦖 und seine Flamme", use_container_width=False)
 
 # Seitenleiste für Filter
 st.sidebar.header("🔍 Filter")
