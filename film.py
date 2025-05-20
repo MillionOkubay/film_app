@@ -1,12 +1,9 @@
-#%% Importe
+#%%import pandas as pd
 import pandas as pd
 import json
 import streamlit as st
-from PIL import Image
-import requests
-from io import BytesIO
 
-#%% JSON-Datei einlesen
+# Datei einlesen
 with open('top250-movies.json', 'r', encoding='utf-8') as f:
     lines = f.readlines()
 
@@ -16,20 +13,9 @@ movie_data = [json.loads(lines[i]) for i in range(1, len(lines), 2)]
 # In DataFrame umwandeln
 df = pd.DataFrame(movie_data)
 
-#%% Streamlit App
-
+#%%
 # App-Titel
 st.title("🎬 Top 250 Movies Explorer")
-
-# Dinosaurier-Bild anzeigen (für Dino 🦖)
-image_url = "https://cdn.pixabay.com/photo/2016/11/22/19/12/dinosaur-1850922_960_720.png"  # Lizenzfreies Bild von Pixabay
-response = requests.get(image_url)
-
-if response.status_code == 200:
-    img = Image.open(BytesIO(response.content))
-    st.image(img, caption="Für Dino 🦖", use_column_width=True)
-else:
-    st.warning("Dino-Bild konnte nicht geladen werden 🦖")
 
 # Seitenleiste für Filter
 st.sidebar.header("🔍 Filter")
