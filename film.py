@@ -1,9 +1,10 @@
-#%%import pandas as pd
+#%% Importe
 import pandas as pd
 import json
 import streamlit as st
+from PIL import Image
 
-# Datei einlesen
+#%% JSON-Datei einlesen
 with open('top250-movies.json', 'r', encoding='utf-8') as f:
     lines = f.readlines()
 
@@ -13,9 +14,14 @@ movie_data = [json.loads(lines[i]) for i in range(1, len(lines), 2)]
 # In DataFrame umwandeln
 df = pd.DataFrame(movie_data)
 
-#%%
+#%% Streamlit App
+
 # App-Titel
 st.title("🎬 Top 250 Movies Explorer")
+
+# Lokales Dinosaurier-Logo anzeigen
+img = Image.open("ChatGPT Image 20. Mai 2025, 15_47_50.png")
+st.image(img, caption="Logo für Dino 🦖", use_column_width=False, width=150)
 
 # Seitenleiste für Filter
 st.sidebar.header("🔍 Filter")
@@ -36,5 +42,3 @@ filtered_df = df[
 # Ergebnisse anzeigen
 st.markdown(f"### 🎞️ Gefundene Filme für Dino: {len(filtered_df)}")
 st.dataframe(filtered_df[['title', 'year', 'rating', 'genres', 'votes', 'languages']])
-
-
