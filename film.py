@@ -22,10 +22,14 @@ df = pd.DataFrame(movie_data)
 st.title("🎬 Top 250 Movies Explorer")
 
 # Dinosaurier-Bild anzeigen (für Dino 🦖)
-image_url = "https://upload.wikimedia.org/wikipedia/commons/6/6e/Tyrannosaurus_BW.jpg"  # Beispielbild
+image_url = "https://cdn.pixabay.com/photo/2016/11/22/19/12/dinosaur-1850922_960_720.png"  # Lizenzfreies Bild von Pixabay
 response = requests.get(image_url)
-img = Image.open(BytesIO(response.content))
-st.image(img, caption="Für Dino 🦖", use_column_width=True)
+
+if response.status_code == 200:
+    img = Image.open(BytesIO(response.content))
+    st.image(img, caption="Für Dino 🦖", use_column_width=True)
+else:
+    st.warning("Dino-Bild konnte nicht geladen werden 🦖")
 
 # Seitenleiste für Filter
 st.sidebar.header("🔍 Filter")
@@ -46,4 +50,5 @@ filtered_df = df[
 # Ergebnisse anzeigen
 st.markdown(f"### 🎞️ Gefundene Filme für Dino: {len(filtered_df)}")
 st.dataframe(filtered_df[['title', 'year', 'rating', 'genres', 'votes', 'languages']])
+
 
