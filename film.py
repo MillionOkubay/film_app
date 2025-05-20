@@ -1,6 +1,7 @@
 #%%import pandas as pd
 import pandas as pd
 import json
+import streamlit as st
 
 # Datei einlesen
 with open('top250-movies.json', 'r', encoding='utf-8') as f:
@@ -13,10 +14,6 @@ movie_data = [json.loads(lines[i]) for i in range(1, len(lines), 2)]
 df = pd.DataFrame(movie_data)
 
 #%%
-import streamlit as st
-
-
-
 # App-Titel
 st.title("🎬 Top 250 Movies Explorer")
 
